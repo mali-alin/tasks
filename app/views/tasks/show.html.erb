@@ -1,0 +1,10 @@
+<h1>Задача: <%= @task.name %></h1>
+<h2>Выполнить до: <%= @task.deadline %></h2>
+
+<% if current_user_can_edit?(@task) %>
+  <div class="buffer-both">
+    <%= link_to 'Редактировать', edit_task_path, class: 'btn btn-primary'%> или
+    <%= link_to 'Удалить', tasks_path(@task), method: :delete, class: "btn btn-primary btn-danger", data: { confirm: 'Вы уверены?'} %>
+  </div>
+<% end %>
+

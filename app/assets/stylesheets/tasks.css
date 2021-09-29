@@ -1,0 +1,46 @@
+.task-info {
+  position: relative;
+  color: white;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.task-background {
+  position: absolute;
+  width: 100%;
+  z-index: -1;
+
+  top: 0; bottom: 0;
+  left: 0; right: 0;
+
+  background-size: cover;
+  background-position: center;
+
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+}
+
+.task-description * {
+  color: white;
+}
+
+.task-description a {
+  color: #6b6bd1;
+}
+
+.task-description small {
+  color: #857f7f;
+}
+
+.task-info-inner {
+  background:rgba(0, 0, 0, 0.4);
+}
+
+.task-map {
+  margin: 20px 0;
+  width: 100%;
+  height: 400px;
+}

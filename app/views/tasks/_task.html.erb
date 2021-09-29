@@ -1,0 +1,15 @@
+<div class="col-sm-6 col-md-4">
+  <div class="thumbnail">
+
+    <%= content_tag 'div', '', class: 'task-background' %>
+
+    <div class="thumbnail-inner event-info-inner">
+      <div class="caption">
+        <div class="task-description">
+          <h3><%= link_to task.name, task_path(task) %></h3>
+          <h3><small><%= task.deadline %></small></h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
