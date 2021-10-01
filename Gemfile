@@ -33,6 +33,10 @@ gem 'devise'
 
 gem 'state_machines'
 
+gem 'jquery-rails'
+
+gem 'state_machines-activerecord'
+
 gem 'twitter-bootstrap-rails'
 
 gem 'pry', '~> 0.13.1'

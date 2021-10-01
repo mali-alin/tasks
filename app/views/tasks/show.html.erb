@@ -4,7 +4,16 @@
 <% if current_user_can_edit?(@task) %>
   <div class="buffer-both">
     <%= link_to 'Редактировать', edit_task_path, class: 'btn btn-primary'%> или
-    <%= link_to 'Удалить', tasks_path(@task), method: :delete, class: "btn btn-primary btn-danger", data: { confirm: 'Вы уверены?'} %>
+    <%= link_to 'Удалить', "/tasks/#{@task.id}", method: :delete, class: "btn btn-primary btn-danger", data: { confirm: 'Вы уверены?'} %>
+
+    <% unless @task.status ==  'in_progress' %>
+      <%= link_to 'Start', start_task_path, method: :get, class: 'btn btn-primary'%>
+    <% else %>
+      <%= link_to 'Complete', complete_task_path, method: :get, class: 'btn btn-primary' %>
+      <%= link_to 'Cancel', cancel_task_path, method: :get, class: 'btn btn-primary'%>
+    <% end %>
+
+
   </div>
 <% end %>
 

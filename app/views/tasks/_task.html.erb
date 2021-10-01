@@ -8,6 +8,13 @@
         <div class="task-description">
           <h3><%= link_to task.name, task_path(task) %></h3>
           <h3><small><%= task.deadline %></small></h3>
+          <h4>Approved by:</h4>
+          <p>
+            <%= render(
+                    partial: 'approvements/approvement',
+                    collection: task.approvements
+                    ) %>
+          </p>
         </div>
       </div>
     </div>

@@ -1,17 +1,18 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]
 
-  before_action :set_task, only: [:show]
-  before_action :set_current_user_task, only: [:edit, :update, :destroy]
-
   # GET /tasks or /tasks.json
   def index
+    @new_tasks = Task.where(status: :new)
+    @in_progress_tasks = Task.where(status: :in_progress)
+    @completed_tasks = Task.where(status: :completed)
+    @canceled_tasks = Task.where(status: :canceled)
     @tasks = Task.all
   end
 
   # GET /tasks/1 or /tasks/1.json
   def show
-    @task = Task.find(params[:id])
+    @task = task
   end
 
   # GET /tasks/new
@@ -21,15 +22,37 @@ class TasksController < ApplicationController
 
   # GET /tasks/1/edit
   def edit
+    return redirect_to task_path(task) unless avaliable?
+  end
 
+  def start
+    return redirect_to task_path(task), alert: 'dasdas' unless task.can_start?
+
+    task.start!
+
+    redirect_to tasks_path
+  end
+
+  def complete
+    return redirect_to task_path(task), alert: 'need 2 approvals' unless task.can_complete?
+
+    task.complete!
+
+    redirect_to tasks_path
+  end
+
+  def cancel
+    task.cancel!
+
+    redirect_to tasks_path
   end
 
   # POST /tasks or /tasks.json
   def create
-    @task = current_user.tasks.build(task_params)
+    task = current_user.tasks.build(create_params)
 
-    if @task.save
-      redirect_to @task, notice: 'Task was successfully created'
+    if task.save
+      redirect_to task_path(task.id), notice: 'Task was successfully created'
     else
       render 'new'
     end
@@ -37,8 +60,8 @@ class TasksController < ApplicationController
 
   # PATCH/PUT /tasks/1 or /tasks/1.json
   def update
-    if @task.update(task_params)
-      redirect_to @task, notice: 'Task was sucessfully updated'
+    if task.update(update_params)
+      redirect_to task_path, notice: 'Task was sucessfully updated'
     else
       render :edit
     end
@@ -46,27 +69,26 @@ class TasksController < ApplicationController
 
   # DELETE /tasks/1 or /tasks/1.json
   def destroy
-    @task.destroy
+    task.delete
 
     redirect_to tasks_url, notice: 'Task was successfully destroyed.'
   end
 
-  def transit_in_progress
-    @task.start
-    redirect_to tasks_url, notice: 'Task has been started'
-  end
-
   private
 
-  def set_current_user_task
-    @task = current_user.tasks.find(params[:id])
-  end
-
-  def set_task
+  def task
     @task = Task.find(params[:id])
   end
 
-  def task_params
+  def create_params
     params.require(:task).permit(:name, :deadline)
+  end
+
+  def update_params
+    params.require(:task).permit(:name, :deadline)
+  end
+
+  def avaliable?
+    task.in?(current_user.tasks)
   end
 end

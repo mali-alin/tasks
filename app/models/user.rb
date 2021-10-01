@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :tasks
+  has_many :approvements
 
   validates :username, presence: true, length: {maximum: 35}
   validates :email, uniqueness: true
