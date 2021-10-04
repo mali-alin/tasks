@@ -1,0 +1,41 @@
+.btn-primary {
+  background-color: rgba(177, 249, 194, 0.8);
+  color: black;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: rgba(127, 252, 156, 0.8);
+  color: black;
+}
+
+.btn-danger {
+  background-color: rgba(247, 55, 55, 0.7);
+}
+.btn-danger:hover {
+  background-color:  rgba(255, 0, 0, 0.7);
+}
+
+.approve-button .btn-primary {
+  background-color: rgb(80, 184, 80);
+  color: white;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.approve-button .btn-primary:hover {
+  background-color: rgb(67, 167, 67);
+  color: white;
+}
+
+.create-button .btn-primary {
+  background-color: rgb(80, 184, 80);
+  color: white;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.create-button .btn-primary:hover {
+  background-color: rgb(67, 167, 67);
+  color: white;
+}
