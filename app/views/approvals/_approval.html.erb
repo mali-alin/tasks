@@ -1,0 +1,14 @@
+<span class="approval">
+  <% if approval.user.present? %>
+    <%= approval.user.username %>
+  <% end %>
+
+  <% if current_user_can_edit?(approval) %>
+    <%= link_to(
+            fa_icon('times'),
+            task_approval_path(approval.task, approval),
+            method: :delete,
+            data: {confirm: "Are you sure?"}
+        ) %>
+  <% end %>
+</span>

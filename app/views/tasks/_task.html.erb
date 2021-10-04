@@ -1,22 +1,24 @@
-<div class="col-sm-6 col-md-4">
-  <div class="thumbnail">
+<div class="task">
+  <h3>Task: <%= link_to task.name, task_path(task) %></h3>
+  <h4><b>Deadline: </b><%= task.deadline %></h4>
 
-    <%= content_tag 'div', '', class: 'task-background' %>
-
-    <div class="thumbnail-inner event-info-inner">
-      <div class="caption">
-        <div class="task-description">
-          <h3><%= link_to task.name, task_path(task) %></h3>
-          <h3><small><%= task.deadline %></small></h3>
-          <h4>Approved by:</h4>
-          <p>
-            <%= render(
-                    partial: 'approvements/approvement',
-                    collection: task.approvements
-                    ) %>
-          </p>
-        </div>
-      </div>
+  <% unless task.users_who_approved.include?(current_user) || current_user.blank? || task.user == current_user %>
+    <% if task.status == "in_progress" %>
+    <div class="approve-button">
+      <%= link_to "Approve", task_approvals_path(task), method: :post, class: "btn btn-primary" %>
     </div>
-  </div>
+    <% end %>
+  <% end %>
+
+  <% if task.approvals.count > 0 %>
+    <h4>Approved by:</h4>
+    <div>
+      <p>
+        <%= render(
+          partial: "approvals/approval",
+          collection: task.approvals.except(@new_approval)
+          ) %>
+      </p>
+    </div>
+  <% end %>
 </div>

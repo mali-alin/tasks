@@ -1,11 +1,30 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Tasks</h1>
 
-<div class="buffer-both">
-  <%= link_to 'Создать задачу', new_task_path, class: 'btn btn-success' %>
+<div class="buffer-both create-button">
+  <%= link_to "Create task", new_task_path, class: "btn btn-primary" %>
 </div>
 
-<div class="row buffer-bottom">
-  <%= render partial: 'tasks/task', collection: @tasks %>
+<div class="container" style="color: rgba(10, 10, 10, 0.8);">
+  <div class="row" style="display: flex; flex-flow: row wrap;">
+    <div class="col-sm-6 col-md-3" style="border-radius: 5px; width: 24%; margin-right: 10px; background: rgba(177, 249, 194, 0.3);" >
+      <h2 style="text-align: center;">New</h2>
+      <hr>
+      <%= render partial: "tasks/task", collection: @new_tasks %>
+    </div>
+    <div class="col-sm-6 col-md-3" style="border-radius: 5px; width: 24%; margin-right: 10px; background: rgba(177, 249, 194, 0.5)">
+      <h2 style="text-align: center;">In progress</h2>
+      <hr>
+      <%= render partial: "tasks/task", collection: @in_progress_tasks %>
+    </div>
+    <div class="col-sm-6 col-md-3" style="border-radius: 5px; width: 24%; margin-right: 10px; background: rgba(177, 249, 194, 0.7)">
+      <h2 style="text-align: center;">Completed</h2>
+      <hr>
+      <%= render partial: "tasks/task", collection: @completed_tasks %>
+    </div>
+    <div class="col-sm-6 col-md-3" style="border: 2px solid rgba(255, 0, 0, 0.8); border-radius: 5px; width: 24%; margin-right: 10px; background: rgba(177, 249, 194, 0.9)">
+      <h2 style="text-align: center;">Canceled</h2>
+      <hr>
+      <%= render partial: "tasks/task", collection: @canceled_tasks %>
+    </div>
+  </div>
 </div>

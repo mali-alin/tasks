@@ -1,19 +1,21 @@
-<h1>Задача: <%= @task.name %></h1>
-<h2>Выполнить до: <%= @task.deadline %></h2>
+<div class="heading">
+  <h1>Task: <%= @task.name %></h1>
+  <h2>Complete before: <%= @task.deadline %></h2>
+  <h3>Status: <%= @task.status %></h3>
+</div>
 
 <% if current_user_can_edit?(@task) %>
   <div class="buffer-both">
-    <%= link_to 'Редактировать', edit_task_path, class: 'btn btn-primary'%> или
-    <%= link_to 'Удалить', "/tasks/#{@task.id}", method: :delete, class: "btn btn-primary btn-danger", data: { confirm: 'Вы уверены?'} %>
+    <%= link_to "Edit", edit_task_path, class: "btn btn-primary" %> /
+    <%= link_to "Delete", "/tasks/#{@task.id}", method: :delete, class: "btn btn-primary btn-danger", data: { confirm: "Are you sure?"} %>
 
-    <% unless @task.status ==  'in_progress' %>
-      <%= link_to 'Start', start_task_path, method: :get, class: 'btn btn-primary'%>
+  <div>
+    <% unless @task.status ==  "in_progress" %>
+      <%= link_to "Start", start_task_path, method: :get, class: "btn btn-primary", style: "margin-top: 10px;" %>
     <% else %>
-      <%= link_to 'Complete', complete_task_path, method: :get, class: 'btn btn-primary' %>
-      <%= link_to 'Cancel', cancel_task_path, method: :get, class: 'btn btn-primary'%>
+      <%= link_to "Complete", complete_task_path, method: :get, class: "btn btn-primary", style: "margin-top: 10px;" %>
+      <%= link_to "Cancel", cancel_task_path, method: :get, class: "btn btn-primary", style: "margin-top: 10px;" %>
     <% end %>
-
-
   </div>
 <% end %>
 

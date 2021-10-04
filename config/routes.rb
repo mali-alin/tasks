@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       get :complete
       get :cancel
     end
-    resources :approvements, only: [:create, :destroy]
+    resources :approvals, only: [:create, :destroy]
   end
   resources :users, only: [:show, :edit, :update, :destroy]
 end
