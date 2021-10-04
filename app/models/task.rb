@@ -1,7 +1,7 @@
 class Task < ApplicationRecord
   belongs_to :user
-  has_many :approvements
-  has_many :users_who_approved, through: :approvements, source: :user
+  has_many :approvals
+  has_many :users_who_approved, through: :approvals, source: :user
 
   validates :name, presence: true
   validates :user, presence: true
@@ -23,11 +23,23 @@ class Task < ApplicationRecord
     event :cancel do
       transition in_progress: :canceled
     end
+
+    event :cancel_approval do
+      transition completed: :in_progress
+    end
+
+    after_transition to: :canceled do |task|
+      task.update(canceled_at: Time.current)
+    end
+
+    after_transition to: :completed do |task|
+      task.update(time_finished: Time.current)
+    end
   end
 
   private
 
   def complete_rules?
-    self.approvements.size >= 2
+    self.approvals.size >= 2
   end
 end
