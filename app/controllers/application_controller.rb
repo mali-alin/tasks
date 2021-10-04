@@ -13,4 +13,8 @@ class ApplicationController < ActionController::Base
   def current_user_can_edit?(task)
     user_signed_in? && task.user == current_user
   end
+
+  def current_user_can_edit_approval?(approval)
+    user_signed_in? && approval.user == current_user
+  end
 end
