@@ -75,6 +75,11 @@ GEM
     diff-lcs (1.4.4)
     erubi (1.10.0)
     execjs (2.8.1)
+    factory_bot (6.2.0)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.2.0)
+      factory_bot (~> 6.2.0)
+      railties (>= 5.0.0)
     ffi (1.15.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
@@ -188,6 +193,8 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    shoulda-matchers (5.0.0)
+      activesupport (>= 5.2.0)
     slim (4.1.0)
       temple (>= 0.7.6, < 0.9)
       tilt (>= 2.0.6, < 2.1)
@@ -247,6 +254,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
   devise
+  factory_bot_rails
   image_processing (~> 1.2)
   jbuilder (~> 2.7)
   jquery-rails
@@ -258,6 +266,7 @@ DEPENDENCIES
   redis (~> 4.0)
   rspec-rails (~> 3.4)
   sass-rails (>= 6)
+  shoulda-matchers
   slim
   spring
   spring-watcher-listen (~> 2.0.0)

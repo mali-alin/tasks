@@ -7,11 +7,6 @@ ruby '2.7.2'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.6'
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3', '~> 1.4'
-gem 'pg'
-
-gem 'rspec-rails', '~> 3.4'
-
-gem 'slim'
 
 
 # Use Puma as the app server
@@ -47,9 +42,17 @@ gem 'twitter-bootstrap-rails'
 
 gem 'pry', '~> 0.13.1'
 
+gem 'pg'
+
+
+gem 'slim'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'rspec-rails', '~> 3.4'
+  gem 'factory_bot_rails'
+  gem 'shoulda-matchers'
 end
 
 group :development do
