@@ -48,7 +48,7 @@ class TasksController < ApplicationController
     if task.save
       redirect_to task_path(task.id), notice: "Task was successfully created"
     else
-      render :new
+      return redirect_to new_task_url,  {alert: 'Fill in gaps'}
     end
   end
 
