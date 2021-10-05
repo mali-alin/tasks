@@ -8,7 +8,6 @@ gem 'rails', '~> 6.0.3', '>= 6.0.3.6'
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3', '~> 1.4'
 
-
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
 # # Use SCSS for stylesheets
@@ -43,7 +42,6 @@ gem 'twitter-bootstrap-rails'
 gem 'pry', '~> 0.13.1'
 
 gem 'pg'
-
 
 gem 'slim'
 
