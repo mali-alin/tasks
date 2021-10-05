@@ -19,7 +19,7 @@ class Approval < ApplicationRecord
 
   def cancel_task
     if Approval.where(task_id: self.task.id).size < 2
-      self.task.cancel_approval!
+      self.task.cancel_approval! if self.task.can_cancel_approval?
     end
   end
 end

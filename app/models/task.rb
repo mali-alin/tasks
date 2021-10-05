@@ -1,7 +1,7 @@
 class Task < ApplicationRecord
   belongs_to :user
-  has_many :approvals, dependent: :destroy
-  has_many :users_who_approved, through: :approvals, source: :user
+  has_many :approvals, dependent: :delete_all
+  has_many :users_who_approved, through: :approvals, source: :user, dependent: :destroy
 
   validates :name, presence: true
   validates :user, presence: true
