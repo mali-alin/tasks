@@ -1,0 +1,16 @@
+.text-center
+  h1
+    = @user.name
+  - if @user == current_user
+    p.buffer-top
+      = link_to "Edit profile", edit_user_path(@user), class: "btn btn-default"
+.row
+  .col-md-12
+    - if @user.tasks.any?
+      h3
+        | My tasks:
+      .row
+        = render partial: "tasks/task", collection: @user.tasks
+    - else
+      p.buffer-top
+        | No tasks yet.

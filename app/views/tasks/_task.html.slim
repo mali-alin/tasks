@@ -1,0 +1,18 @@
+.task
+  h3
+    | Task:
+    = link_to " #{task.name}", task_path(task)
+  h4
+    b
+      | Deadline:
+    = " #{task.deadline}"
+  - unless task.users_who_approved.include?(current_user) || current_user.blank? || task.user == current_user
+    - if task.status == "in_progress"
+      .approve-button
+        = link_to "Approve", task_approvals_path(task), method: :post, class: "btn btn-primary"
+  - if task.approvals.count > 0
+    h4
+      | Approved by:
+    div
+      p
+        = render partial: "approvals/approval", collection: task.approvals.except(@new_approval)

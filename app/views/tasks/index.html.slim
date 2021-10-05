@@ -1,0 +1,26 @@
+h1
+  | Tasks
+.buffer-both.create-button
+  = link_to "Create task", new_task_path, class: "btn btn-primary"
+.container[style="color: rgba(10, 10, 10, 0.8);"]
+  .row[style="display: flex; flex-flow: row wrap;"]
+    .col-sm-6.col-md-3[style="border-radius: 5px; width: 24%; margin-right: 10px; background: rgba(177, 249, 194, 0.3);"]
+      h2[style="text-align: center;"]
+        | New
+      hr
+      = render partial: "tasks/task", collection: @new_tasks
+    .col-sm-6.col-md-3[style="border-radius: 5px; width: 24%; margin-right: 10px; background: rgba(177, 249, 194, 0.5)"]
+      h2[style="text-align: center;"]
+        | In progress
+      hr
+      = render partial: "tasks/task", collection: @in_progress_tasks
+    .col-sm-6.col-md-3[style="border-radius: 5px; width: 24%; margin-right: 10px; background: rgba(177, 249, 194, 0.7)"]
+      h2[style="text-align: center;"]
+        | Completed
+      hr
+      = render partial: "tasks/task", collection: @completed_tasks
+    .col-sm-6.col-md-3[style="border: 2px solid rgba(255, 0, 0, 0.8); border-radius: 5px; width: 24%; margin-right: 10px; background: rgba(177, 249, 194, 0.9)"]
+      h2[style="text-align: center;"]
+        | Canceled
+      hr
+      = render partial: "tasks/task", collection: @canceled_tasks

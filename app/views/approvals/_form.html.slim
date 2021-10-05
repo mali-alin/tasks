@@ -1,0 +1,13 @@
+= form_with(model: approval, local: true) do |form|
+  - if approval.errors.any?
+    #error_explanation
+
+    h2
+      = pluralize(approval.errors.count, "error")
+      |  prohibited this approval from being saved:
+    ul
+      - approval.errors.full_messages.each do |message|
+        li
+          = message
+  .actions
+    = form.submit

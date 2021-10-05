@@ -1,0 +1,33 @@
+doctype html
+html[lang="en"]
+  head
+    meta[charset="utf-8"]
+    meta[http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"]
+    meta[name="viewport" content="width=device-width, initial-scale=1.0"]
+    title
+      = content_for?(:name) ? yield(:name) : "Task"
+    = csrf_meta_tags
+    = javascript_include_tag "application"
+    = stylesheet_link_tag "application", :media => "all"
+  body
+    .navbar.navbar-default.navbar-static-top
+      .container
+        = link_to "Tasks", root_path, class: "navbar-brand"
+        .navbar-collapse.collapse.navbar-responsive-collapse
+          ul.nav.navbar-nav
+            - if user_signed_in?
+              li
+                = link_to "Profile", current_user
+              li
+                = link_to "Sign out", destroy_user_session_path, method: :delete
+            - else
+              li
+                = link_to "Sign in", new_user_session_path
+              li
+                = link_to "Sign up", new_user_registration_path
+    .container
+      .row
+        .col-lg-9
+          = bootstrap_flash
+          = yield
+        .col-lg-3

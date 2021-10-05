@@ -1,0 +1,13 @@
+= form_for(@task) do |f|
+  = render partial: "partials/form_errors", locals: {model: @task}
+  .form-group
+    = f.label :name
+    = f.text_field :name, class: "form-control"
+  .form-group
+    = f.label :deadline
+    p
+      = f.datetime_select :deadline, class: "form-control"
+  .actions
+    = f.submit "Save", class: "btn btn-primary"
+    |  /
+    = link_to "Back", :back

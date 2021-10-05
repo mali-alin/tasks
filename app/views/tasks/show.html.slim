@@ -1,0 +1,21 @@
+.heading
+  h1
+    | Task:
+    = " #{@task.name}"
+  h2
+    | Complete before:
+    = " #{@task.deadline}"
+  h3
+    | Status:
+    = " #{@task.status}"
+- if current_user_can_edit?(@task)
+  .buffer-both
+    = link_to "Edit", edit_task_path, class: "btn btn-primary"
+    |  /
+    = link_to "Delete", "/tasks/#{@task.id}", method: :delete, class: "btn btn-primary btn-danger", data: { confirm: "Are you sure?"}
+  div
+    - unless @task.status ==  "in_progress"
+      = link_to "Start", start_task_path, method: :get, class: "btn btn-primary", style: "margin-top: 10px;"
+    - else
+      = link_to "Complete", complete_task_path, method: :get, class: "btn btn-primary", style: "margin-top: 10px;"
+      = link_to "Cancel", cancel_task_path, method: :get, class: "btn btn-primary", style: "margin-top: 10px;"
