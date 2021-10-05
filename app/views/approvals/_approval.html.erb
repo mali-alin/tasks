@@ -1,6 +1,6 @@
 <span class="approval">
   <% if approval.user.present? %>
-    <%= approval.user.username %>
+    <%= approval.user.name %>
   <% end %>
 
   <% if current_user_can_edit?(approval) %>
