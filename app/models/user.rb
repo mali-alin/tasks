@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :tasks, dependent: :destroy
   has_many :approvals, dependent: :destroy
 
-  validates :username, presence: true, length: {maximum: 35}
+  validates :name, presence: true, length: {maximum: 35}
   validates :email, uniqueness: true
 
   before_validation :set_name, on: :create
@@ -15,6 +15,6 @@ class User < ApplicationRecord
   private
 
   def set_name
-    self.username = "Пользователь №#{rand(2000)}" if self.username.blank?
+    self.name = "User №#{rand(2000)}" if self.name.blank?
   end
 end
